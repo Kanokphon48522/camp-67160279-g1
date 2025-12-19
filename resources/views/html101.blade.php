@@ -1,65 +1,38 @@
-<!-- file: resources/views/html101.blade.php -->
-<!DOCTYPE html>
-<html>
-<head>
-        <title>ส่วนหัวของ html</title>
-        <link rel="stlyesheet" href="css/bootstrap.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans+Thai:wght@100..800&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: "Playpen Sans Thai", cursive;
-            }
+@extends('template.default')
+@section('title', 'Workshop form')
+@section('content')
+        <form class="needs-validation" novalidate>
 
-        .form-label {
-            display: inline-block;
-            width: 120px; 
-        }
-        .form-control, select, textarea {
-            display: inline-block;
-            width: 250px;
-            vertical-align: middle;
-        }
-        .radio-group label {
-            margin-right: 10px;
-        }
-        .checkbox-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-        .btn-group {
-            display: flex;
-            justify-content: space-between;
-            width: 280px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container mt-4">
-        <h1>Workshop #HTML - FORM</h1>
-        <form>
             <div class="row mt-3">
                 <label for="fname" class="form-label">ชื่อ</label>
-                <input id="fname" class="form-control" type="text">
+                <input id="fname" class="form-control" type="text" required>
+                <div class="invalid-feedback" style="margin-left: 120px;">
+                    โปรดระบุชื่อ
+                </div>
             </div>
 
             <div class="row mt-3">
                 <label for="lname" class="form-label">สกุล</label>
-                <input id="lname" class="form-control" type="text">
+                <input id="lname" class="form-control" type="text" required>
+                <div class="invalid-feedback" style="margin-left: 120px;">
+                    โปรดระบุนามสกุล
+                </div>
             </div>
 
             <div class="row mt-3">
                 <label for="pbirth" class="form-label">วัน/เดือน/ปีเกิด</label>
-                <input id="pbirth" type="date" class="form-control">
+                <input id="pbirth" type="date" class="form-control" required>
+                <div class="invalid-feedback" style="margin-left: 120px;">
+                    โปรดระบุวันเกิด
+                </div>
             </div>
 
             <div class="row mt-3">
                 <label for="age" class="form-label">อายุ</label>
-                <input id="age" type="text" class="form-control">
+                <input id="age" type="text" class="form-control" required>
+                <div class="invalid-feedback" style="margin-left: 120px;">
+                    โปรดระบุอายุ
+                </div>
             </div>
 
             <div class="row mt-3">
@@ -80,17 +53,18 @@
 
             <div class="row mt-3">
                 <label for="address" class="form-label">ที่อยู่</label>
-                <textarea id="address" class="form-control" rows="4"></textarea>
+                <textarea id="address" class="form-control" rows="4" required></textarea>
+                <div class="invalid-feedback" style="margin-left: 120px;">
+                    โปรดระบุที่อยู่
+                </div>
             </div>
 
             <div class="row mt-3">
                 <label for="color" class="form-label">สีที่ชอบ</label>
-                <select id="color" class="form-control">
-                    <option value="red">สีแดง</option>
-                    <option value="blue">สีน้ำเงิน</option>
-                    <option value="green">สีเขียว</option>
-                    <option value="yellow">สีเหลือง</option>
-                </select>
+                <input id="color" type="text" class="form-control" required>
+                <div class="invalid-feedback" style="margin-left: 120px;">
+                    โปรดระบุสีที่ชอบ
+                </div>
             </div>
 
             <div class="row mt-3">
@@ -117,10 +91,62 @@
             <div class="row mt-3">
                 <div class="btn-group">
                     <input type="reset" value="Reset">
-                    <input type="submit" value="Submit">
+                    <input type="submit" class="btn btn-primary" value="Submit">
                 </div>
             </div>
         </form>
-    </div>
-</body>
-</html>
+    @endsection
+
+    @push('scripts')
+        <script>
+            // let clickMe = function (){
+            //     //let fname = document.getElementById("fname")
+            //     //fname.value = "From ClickMe"
+            //     console.log(fname.value)
+            //     if(fname.value == ""){
+            //         fname.classList.remove('is-valid')
+            //         fname.classList.add('is-invalid')
+            //     }else{
+            //         fname.classList.remove('is-invalid')
+            //         fname.classList.add('is-valid')
+            //     }
+            // }
+
+(function () {
+    'use strict'
+
+    var forms = document.querySelectorAll('.needs-validation')
+
+    Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+            form.classList.remove('was-validated');
+
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+})();
+
+
+            let myfunc = (callback)=>{
+                callback("in Call back")
+            }
+
+            callMe = (param) => {
+                console.log(param)
+            }
+
+            myfunc(callMe)
+
+            let myvar1 = 1
+            let myvar2 = "1"
+            myvar2 = parseInt(myvar2)
+            console.log(myvar1 + myvar2)
+            console.log(1 == '1')
+
+        </script>
+    @endpush
