@@ -1,11 +1,12 @@
 @extends('template.default')
 @section('title', 'Workshop form')
 @section('content')
-        <form class="needs-validation" novalidate>
+        <form action="{{ route('workshop.store') }}" method="POST" class="needs-validation" novalidate>
+            @csrf
 
             <div class="row mt-3">
                 <label for="fname" class="form-label">ชื่อ</label>
-                <input id="fname" class="form-control" type="text" required>
+                <input id="fname" name = "fname" class="form-control" type="text" required>
                 <div class="invalid-feedback" style="margin-left: 120px;">
                     โปรดระบุชื่อ
                 </div>
@@ -13,7 +14,7 @@
 
             <div class="row mt-3">
                 <label for="lname" class="form-label">สกุล</label>
-                <input id="lname" class="form-control" type="text" required>
+                <input id="lname" name = "lname" class="form-control" type="text" required>
                 <div class="invalid-feedback" style="margin-left: 120px;">
                     โปรดระบุนามสกุล
                 </div>
@@ -21,7 +22,7 @@
 
             <div class="row mt-3">
                 <label for="pbirth" class="form-label">วัน/เดือน/ปีเกิด</label>
-                <input id="pbirth" type="date" class="form-control" required>
+                <input id="pbirth" name = "pbirth" type="date" class="form-control" required>
                 <div class="invalid-feedback" style="margin-left: 120px;">
                     โปรดระบุวันเกิด
                 </div>
@@ -29,7 +30,7 @@
 
             <div class="row mt-3">
                 <label for="age" class="form-label">อายุ</label>
-                <input id="age" type="text" class="form-control" required>
+                <input id="age" name = "age" type="text" class="form-control" required>
                 <div class="invalid-feedback" style="margin-left: 120px;">
                     โปรดระบุอายุ
                 </div>
@@ -48,12 +49,12 @@
 
             <div class="row mt-3">
                 <label for="pics" class="form-label">รูป</label>
-                <input type="file" id="pics">
+                <input type="file" id="pics" name = "pics">
             </div>
 
             <div class="row mt-3">
                 <label for="address" class="form-label">ที่อยู่</label>
-                <textarea id="address" class="form-control" rows="4" required></textarea>
+                <textarea id="address" name="address" class="form-control" rows="4" required></textarea>
                 <div class="invalid-feedback" style="margin-left: 120px;">
                     โปรดระบุที่อยู่
                 </div>
@@ -61,7 +62,7 @@
 
             <div class="row mt-3">
                 <label for="color" class="form-label">สีที่ชอบ</label>
-                <input id="color" type="text" class="form-control" required>
+                <input id="color" name = "color" type="text" class="form-control" required>
                 <div class="invalid-feedback" style="margin-left: 120px;">
                     โปรดระบุสีที่ชอบ
                 </div>
